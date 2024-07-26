@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=McLaren|Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    <div id="login">
+        <div class="loginpage">
+            <div class="buttons">
+                <div class="btn" id="btn-box"></div>
+                <a href="{{ url_for('login') }}"><button id="btn1" onclick="login()">LOGIN</button></a>
+                <a href="{{ url_for('home') }}"><button id="btn2" onclick="register()">REGISTER</button></a>
+            </div>
+            <div class="forms">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form action="{{ url_for('login') }}" method="POST" class="login-form" id="loginform">
+                    <div class="log-input">
+                        <input type="email" placeholder="Email" name="login-email" required>
+                    </div>
+                    <div class="log-input">
+                        <input type="password" placeholder="Password" name="login-pass" required>
+                    </div>
+                    <button class="login-btn" type="submit">LOGIN</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body class="body">
+    <div class="head">
+        <div class="logo">
+            <img src="https://picsum.photos/300" alt="logo"/>
+            <p>X-SCAN</p>
+        </div>
+        <div class="profile">
+            <p id="t">{{ mail }}</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="greet">Good Morning <div class="name">Mr. Yash!</div></div>
+        <div class="upload-section">
+            <form id="input-img-form" action="{{ url_for('dashboard', mail=mail) }}" method="POST" enctype="multipart/form-data">
+                <input type="file" id="image-input" name="ximage" accept="image/*" style="display: none;">
+                <input type="hidden" name="mail" value="{{ mail }}">
+                <button type="submit" class="btn-content" id="upload-button">
+                    <div class="upload-btn">
+                        <img src="{{ url_for('static', filename='p+_icon.png') }}" alt="Upload Icon"/>
+                        <div class="upload-text">Upload X-Ray</div>
+                    </div>
+                </button>
+            </form>
+            
+            
+            <div class="sideimg">
+                <img src="{{ url_for('static', filename='dashboard.png') }}"/>
+            </div>
+        </div>
+
+        {% if reports %}
+        {% for report in reports %}
+        <div class="card-style">
+            <a href="#">
+                <img src="{{ url_for('static', filename='reports_placeholder.png') }}" class="rand"/>
+                <div class="random">
+                    <div class="text">
+                        <div class="content">Report ID : <div id="refid">{{ report.rid }}</div></div>
+                        <div class="content">Date: <div id="date">{{ report.date }}</div></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    
+    <script>
+        const uploadButton = document.getElementById("upload-button");
+        const imageInput = document.getElementById("image-input");
+
+        uploadButton.addEventListener("click", () => {
+            imageInput.click();
+            imageInput.style.zIndex = 2;
+        });
+    </script>
+</body>
+</html>

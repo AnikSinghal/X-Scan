@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=McLaren|Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <title>Register</title>
+</head>
+<body>
+    <div id="login">
+        <div class="loginpage">
+            <div class="buttons" >
+                <div class="btn" id="btn-box"></div>
+                <a href="{{ url_for('login') }}"><button id="btn1" onclick="login()">LOGIN</button></a>
+                <a href="{{ url_for('home') }}"><button id="btn2" onclick="register()">REGISTER</button></a>
+            </div>
+            <div class="forms">
+                <form action="{{ url_for('home') }}" method="POST" class="login-form" id="register" >
+                    <div class="log-input">
+                        <input type="text" placeholder="Username" name="username" minlength="5" />
+                    </div>
+                    <div class="log-input">
+                        <input type="email" placeholder="Email" name="email" minlength="5" />
+                    </div>
+                    <div class="log-input">
+                        <input type="password" placeholder="Password" name="pass" minlength="8" />
+                    </div>
+                    <div class="log-input">
+                        <input type="password" placeholder="Confirm Password" name="cnfPass" minlength="8" />
+                    </div>
+                    <button class="login-btn" type="submit">REGISTER</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var x=document.getElementById("btn-box");
+        function register(){
+            x.style.left = "100px";
+        }
+        function login(){
+            x.style.left = "0px";
+        }
+    </script>
+</body>
+</html>
